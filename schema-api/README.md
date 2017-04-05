@@ -3,8 +3,10 @@ Preconfiguring with the Schema API
 
 The idea behind the [Schema API](https://cwiki.apache.org/confluence/display/solr/Schema+API)
 is that you can make schema modifications via an API rather than having to make modifications
-to a static schema.xml. This allows an application to create a core and then configure
-its schema automatically. Internally, Solr modifies the XML file on your behalf.
+to a static `schema.xml`. This allows an application to create a core and then configure
+its schema automatically. Even for manual modifications it can be nice to use, as the Schema
+API will do some validation, and make sure you do not corrupt the XML configuration.
+Internally, Solr modifies the XML file on your behalf.
 
 Sometimes though you may have an application that requires you to create and 
 configure the core manually before starting the application. In automated deployments
@@ -20,7 +22,7 @@ docker run --rm -d --name solr-initial -p 8983:8983 solr solr-precreate initial_
 
 Verify this started, on http://localhost:8983/solr/#/initial_core
 
-Now you can use the schema API to create fields:
+Now you can use the Schema API to create fields:
 
 ```
 curl -X POST -H 'Content-type:application/json' --data-binary '{
@@ -32,14 +34,17 @@ curl -X POST -H 'Content-type:application/json' --data-binary '{
 }' http://localhost:8983/solr/initial_core/schema
 ```
 
-Now we can copy the entire core directory from the container, and kill it:
+See the [Schema API documentation](https://cwiki.apache.org/confluence/display/solr/Schema+API)
+for other examples, the [Overview of Documents, Fields, and Schema Design](https://cwiki.apache.org/confluence/display/solr/Overview+of+Documents%2C+Fields%2C+and+Schema+Design) for a full explanation of the Solr schema.
+
+Now we can copy the entire core directory from the container, and kill the container:
 
 ```
 docker cp solr-initial:/opt/solr/server/solr/mycores/initial_core coredir
 docker kill solr-initial
 ```
 
-Remove the data directory from the core:
+Remove the data directory from the core (a new one will be created by Solr when it starts):
 
 ```
 rm -fr coredir/data
@@ -56,10 +61,12 @@ Great; now we can use that configuration in future containers,
 check these files into a source control system, or package it up
 for distribution.
 
-Of course you could also make further manual configuration changes,
-to the `managed-schema` file, or any of the other files in the `coredir`.
+Of course you could also make further manual configuration changes to the
+`managed-schema` file or any of the other files in the `coredir` directory.
 In fact the use of the Schema API above is optional, and you could just copy
-the unmodified default, then locally modify.
+the unmodified default, then locally modify; that also has the advantage you
+can see the comments in the file which the Schema API discards when it rewrites
+the file.
 
 There are various ways you can now make use of this configuration in your containers.
 

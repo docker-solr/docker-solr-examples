@@ -1,0 +1,9 @@
+Contributing Guidelines
+=======================
+
+To add examples, please submit a Github Pull Request on https://github.com/docker-solr/docker-solr-examples.
+
+Please make sure your example:
+
+- has a nicely formatted `README.md`
+- works on Linux and MacOS; if it doesn't, make sure to mention that in the `README.md`
