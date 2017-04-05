@@ -106,11 +106,11 @@ Then you can use the [Schema Editor](http://localhost:8983/solr/#/core2/schema) 
 verify it has your configuration.
 
 
-Using as a template
--------------------
+Using as a configset
+--------------------
 
 If you want to re-use this configuration for multiple Solr instances, then you
-can use this configuration as a template; we just need to make sure there is no
+can use this configuration as a tempconfigsetlate; we just need to make sure there is no
 `core.properties` file, otherwise Solr will try to create a core there.
 We could do it in a similar way to the volume above, or we could use a host-mounted
 directory, mounted read-only:
