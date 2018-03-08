@@ -11,11 +11,11 @@ versions. See the `schema-api` example for a different approach.
 Modifying the configset
 -----------------------
 
-First we copy the `basic_configs` configset in Solr:
+First we copy the `_default` configset in Solr:
 
 ```
 docker create --rm --name copier solr
-docker cp copier:/opt/solr/server/solr/configsets/basic_configs myconfig
+docker cp copier:/opt/solr/server/solr/configsets/_default myconfig
 docker rm copier
 ```
 
@@ -31,9 +31,9 @@ You can do that with an editor, or with these commands:
 
 ```
 cp myconfig/conf/managed-schema myconfig/conf/managed-schema.orig
-sed -e '/<field name="id"/s/.*/&\n    <field name="myfield" type="text_general" multiValued="true" indexed="true" stored="false"\/>/' myconfig/conf/managed-schema > myconfig/conf/managed-schema.modified
+sed -e '/<field name="id"/a\'$'\n''\    <field name="myfield" type="text_general" multiValued="true" indexed="true" stored="false"\/>' myconfig/conf/managed-schema > myconfig/conf/managed-schema.modified
+diff -du myconfig/conf/managed-schema myconfig/conf/managed-schema.modified
 mv myconfig/conf/managed-schema.modified myconfig/conf/managed-schema
-diff -du myconfig/conf/managed-schema.orig myconfig/conf/managed-schema
 ```
 
 See the [Overview of Documents, Fields, and Schema Design](https://cwiki.apache.org/confluence/display/solr/Overview+of+Documents%2C+Fields%2C+and+Schema+Design) for a full explanation of the Solr schema.
