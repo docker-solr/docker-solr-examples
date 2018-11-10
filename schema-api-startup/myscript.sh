@@ -41,7 +41,7 @@ else
     echo "Created core with: ${@:1}"
 
     # get the core name.
-    core_name=$(wget -q -O -  http://localhost:8983/solr/admin/cores|grep -E -o '<str name="name">([^>]+)</str>'|sed -r -e 's/<[^>]*>//' -e 's/<[^>]*>//')
+    core_name=$(wget -q -O - 'http://localhost:8983/solr/admin/cores?wt=xml'|grep -E -o '<str name="name">([^>]+)</str>'|sed -r -e 's/<[^>]*>//' -e 's/<[^>]*>//')
     if [[ -z $core_name ]]; then
         echo "could not determine core name"
         exit 1
