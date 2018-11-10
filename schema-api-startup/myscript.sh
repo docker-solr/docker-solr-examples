@@ -62,7 +62,7 @@ else
     stop-local-solr
 
     # move the core to "mycores" so users can mount a directory there
-    mv "/opt/solr/server/solr/$core_name" /opt/solr/server/solr/mycores
+    mv "/opt/solr/server/solr/$core_name" /opt/solr/server/solr/mycores/
 
     touch $sentinel
 fi
