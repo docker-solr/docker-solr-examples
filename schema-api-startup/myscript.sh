@@ -52,7 +52,7 @@ else
     curl -X POST -H 'Content-type:application/json' --data-binary '{
   "add-field":{
     "name":"sell-by",
-    "type":"tdate",
+    "type":"pdate",
     "stored":true
     }
 }' http://localhost:8983/solr/$core_name/schema
