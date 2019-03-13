@@ -5,8 +5,6 @@ services:
     image: solr:7
     ports:
      - "8981:8983"
-    volumes:
-      - solrcores1:/opt/solr/server/solr/mycores
     environment:
       - ZK_HOST=zoo1:2181,zoo2:2181,zoo3:2181
     networks:
@@ -21,8 +19,6 @@ services:
     container_name: solr2
     ports:
      - "8982:8983"
-    volumes:
-      - solrcores2:/opt/solr/server/solr/mycores
     environment:
       - ZK_HOST=zoo1:2181,zoo2:2181,zoo3:2181
     networks:
@@ -37,8 +33,6 @@ services:
     container_name: solr3
     ports:
      - "8983:8983"
-    volumes:
-      - solrcores3:/opt/solr/server/solr/mycores
     environment:
       - ZK_HOST=zoo1:2181,zoo2:2181,zoo3:2181
     ports:
@@ -91,8 +85,3 @@ services:
 
 networks:
   solr:
-
-volumes:
-  solrcores1:
-  solrcores2:
-  solrcores3:
