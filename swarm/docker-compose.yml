@@ -1,0 +1,112 @@
+version: '3'
+services:
+  zoo1:
+    image: zookeeper:3.4
+    hostname: zoo1
+    networks:
+      solrnet:
+    volumes:
+      - 'zoo1_data:/data'
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_PORT: 2181
+      ZOO_SERVERS: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity10]
+  zoo2:
+    image: zookeeper:3.4
+    hostname: zoo2
+    networks:
+      solrnet:
+    volumes:
+      - 'zoo2_data:/data'
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_PORT: 2181
+      ZOO_SERVERS: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity20]
+  zoo3:
+    image: zookeeper:3.4
+    hostname: zoo3
+    networks:
+      solrnet:
+    volumes:
+      - 'zoo3_data:/data'
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_PORT: 2181
+      ZOO_SERVERS: 'server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity30]
+  solr1:
+    image: solr:8.0.0
+    hostname: solr1
+    networks:
+      solrnet:
+    ports:
+      - 8985:8983
+    volumes:
+      - 'solr1_varsolr:/var/solr'
+    environment:
+      ZK_HOST: 'zoo1,zoo2,zoo3'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity10]
+  solr2:
+    image: solr:8.0.0
+    hostname: solr2
+    networks:
+      solrnet:
+    ports:
+      - 8986:8983
+    volumes:
+      - 'solr2_varsolr:/var/solr'
+    environment:
+      ZK_HOST: 'zoo1,zoo2,zoo3'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity20]
+  solr3:
+    image: solr:8.0.0
+    hostname: solr3
+    networks:
+      solrnet:
+    ports:
+      - 8987:8983
+    volumes:
+      - 'solr3_varsolr:/var/solr'
+    environment:
+      ZK_HOST: 'zoo1,zoo2,zoo3'
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == trinity30]
+networks:
+  solrnet:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.101.0.0/16
+volumes:
+  zoo1_data:
+  zoo2_data:
+  zoo3_data:
+  solr1_varsolr:
+  solr2_varsolr:
+  solr3_varsolr:
