@@ -41,18 +41,21 @@ tdyxy4hktl52        issue52_zoo3.1      zookeeper:3.4       trinity30           
 
 
 Go to port `8985` on the first node, eg http://trinity10.lab:8985 and you should see Solr Admin console.
-Inspect the **Cloud**▶**Nodes** and **Cloud**▶**ZK Status** menus, and verify that you see all three nodes, and the ZooKeeper ensemble has a leader and two followers.
+Inspect the **Cloud**▶**Nodes** and **Cloud**▶**ZK Status** menus and verify that you see all three nodes:
 
-![Nodes](img/nodes.png)
-![ZK Status](img/zkstatus.png)
+<img src="img/nodes.png" title="Nodes" width="1718" height="918">
 
-To create a collection, go to **Collections**, use name "gettingstarted", pick the `_default` config set, set `NumShards` to 3 and press "Add Collection".
+Inspect the **Cloud**▶**ZK Status** menu and verify that the ZooKeeper ensemble has a leader and two followers:
 
-![Create Collection](img/createcollection.png)
+<img src="img/zkstatus.png" title="ZK Status" width="1116" height="774">
 
-Go to the **Cloud**▶**Graph** and you should see the collection and its three shards.
+To create a collection, go to **Collections**, use name "gettingstarted", pick the `_default` config set, set `NumShards` to 3 and press "Add Collection":
 
-![Graph](img/graph.png)
+<img src="img/createcollection.png" title="Create Collection" width="698" height="548">
+
+Go to the **Cloud**▶**Graph** and you should see the collection and its three shards:
+
+<img src="img/graph.png" title="Graph" width="698" height="548">
 
 To Remove
 ---------
