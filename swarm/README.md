@@ -56,7 +56,7 @@ Inspect the **Cloud**▶**ZK Status** menu and verify that the ZooKeeper ensembl
 To create a collection, go to **Collections**, use name "gettingstarted", pick the `_default` config set, set `NumShards` to 3 and press "Add Collection":
 
 <p align="center">
-<img src="img/createcollection.png" title="Create Collection" width="698" height="548">
+<img src="img/createcollection.png" title="Create Collection" width="419" height="329">
 </p>
 
 Go to the **Cloud**▶**Graph** and you should see the collection and its three shards:
