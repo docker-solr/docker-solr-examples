@@ -62,7 +62,7 @@ To create a collection, go to **Collections**, use name "gettingstarted", pick t
 Go to the **Cloud**▶**Graph** and you should see the collection and its three shards:
 
 <p align="center">
-<img src="img/graph.png" title="Graph" width="698" height="548">
+<img src="img/graph.png" title="Graph" width="879" height="79">
 </p>
 
 To Remove
