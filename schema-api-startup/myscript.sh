@@ -20,6 +20,11 @@ fi
 
 # keep a sentinel file so we don't try to create the core a second time
 # for example when we restart a container.
+# You must create a directory on your host that will be the parent of the
+# sentinel. This directory must be mounted otherwise certain docker commands
+# e.g. docker-compose pull solr followed by docker-compose up -d solr will
+# destroy the sentinel file and the script will error,
+# saying "Core already exists".
 sentinel=/opt/docker-solr/core_created
 if [ -f $sentinel ]; then
     echo "skipping core creation"
