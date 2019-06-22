@@ -1,0 +1,14 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource" 
+              driver="org.postgresql.Driver"
+              url="${dataimporter.datasource.url}"
+              user="${dataimporter.datasource.user}"
+              password="${dataimporter.datasource.password}"/>
+  <document>
+    <entity name="cty" 
+            query="select id,name from city">
+     <field column="id" name="id"/>
+     <field column="name" name="name_str"/>       
+    </entity>
+  </document>
+</dataConfig>
