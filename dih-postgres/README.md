@@ -68,7 +68,7 @@ To talk to it from Solr we'll need a JDBC driver.
 ```
 curl -O https://jdbc.postgresql.org/download/postgresql-42.2.6.jar
 ```
-We'll use a Solr DIH `data-config.xml` with explicit values first:
+We'll use a Solr DIH [data-config.xml](data-config.xml):
 
 ```
 <dataConfig>
@@ -95,7 +95,7 @@ docker cp tmp1:/opt/solr/server/solr/configsets/_default/conf/solrconfig.xml sol
 docker rm tmp1
 ```
 
-Modify it to load the dataimporthandler, and add a requesthandler configuration for it:
+Modify the [solrconfig.xml](solrconfig.xml) to load the dataimporthandler, and add a requesthandler configuration for it:
 
 ```
 ed solrconfig.xml <<'EOM'
