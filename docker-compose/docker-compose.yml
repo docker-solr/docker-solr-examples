@@ -54,7 +54,7 @@ services:
       - zoo3
 
   zoo1:
-    image: zookeeper
+    image: zookeeper:3.4
     container_name: zoo1
     restart: always
     hostname: zoo1
@@ -67,7 +67,7 @@ services:
       - solr
 
   zoo2:
-    image: zookeeper
+    image: zookeeper:3.4
     container_name: zoo2
     restart: always
     hostname: zoo2
@@ -80,7 +80,7 @@ services:
       - solr
 
   zoo3:
-    image: zookeeper
+    image: zookeeper:3.4
     container_name: zoo3
     restart: always
     hostname: zoo3
