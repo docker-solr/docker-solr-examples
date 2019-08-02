@@ -11,7 +11,7 @@ version: '3.7'
 services:
   solr1:
     container_name: solr1
-    image: solr:7
+    image: solr:8.2
     ports:
      - "8981:8983"
     environment:
@@ -24,7 +24,7 @@ services:
       - zoo3
 
   solr2:
-    image: solr:7
+    image: solr:8.2
     container_name: solr2
     ports:
      - "8982:8983"
@@ -38,7 +38,7 @@ services:
       - zoo3
 
   solr3:
-    image: solr:7
+    image: solr:8.2
     container_name: solr3
     ports:
      - "8983:8983"
