@@ -10,8 +10,8 @@
 version: '3.7'
 services:
   solr1:
-    container_name: solr1
     image: solr:8.3
+    container_name: solr1
     ports:
      - "8981:8983"
     environment:
@@ -44,8 +44,6 @@ services:
      - "8983:8983"
     environment:
       - ZK_HOST=zoo1:2181,zoo2:2181,zoo3:2181
-    ports:
-      - 8983:8983
     networks:
       - solr
     depends_on:
